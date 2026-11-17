@@ -1,0 +1,23 @@
+set_default_toolchain("//build/toolchains:clang")
+
+include_dirs = ["include"]
+
+cflags_cc = 
+[
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Wshadow",
+    "-Wconversion",
+    "-Wsign-conversion",
+    "-Wformat=2",
+    "-Wdouble-promotion",
+    "-Wnull-dereference",
+    "-Wundef",
+    "-Wcast-align",
+    "-Wcast-qual",
+    "-Woverloaded-virtual",
+    "-Wnon-virtual-dtor",
+    "-std=c++23",
+    "-O1"
+]

@@ -1,0 +1,7 @@
+executable("test")
+{
+    sources =
+    [
+        "src/main.cpp"
+    ]
+}
