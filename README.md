@@ -1,7 +1,7 @@
 <h1 align="center">INERTIA</h1>
 
 <p align="center">
-  <img src="assets/icon.svg" alt="Banner" width="100%">
+  <img src="assets/banner.svg" alt="Banner" width="100%">
 </p>
 
 <h3 align="center">A world governed by interaction</h3>
