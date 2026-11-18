@@ -7,7 +7,7 @@
    viewBox="0 0 192 64"
    version="1.1"
    id="svg1"
-   inkscape:export-filename="icon.svg"
+   inkscape:export-filename="banner.svg"
    inkscape:export-xdpi="101.6"
    inkscape:export-ydpi="101.6"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -53,7 +53,7 @@
        id="g7"
        style="stroke:#34434f;stroke-width:1.32292;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1">
       <rect
-         style="opacity:1;fill:#111820;fill-opacity:1;stroke:none;stroke-width:2.29136;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+         style="opacity:1;fill:#111820;fill-opacity:1;stroke:#34434f;stroke-width:2.64583;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
          id="rect8"
          width="192"
          height="64"
@@ -64,17 +64,18 @@
          style="fill:#8496a5;fill-opacity:1;stroke:#34434f;stroke-width:1.32292;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
       <g
          id="g8"
-         transform="translate(62)">
+         transform="translate(62)"
+         style="stroke-width:2.64583;stroke-dasharray:none">
         <rect
-           style="opacity:0.531339;fill:#8496a5;fill-opacity:1;stroke:#34434f;stroke-width:1.32292;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+           style="opacity:0.531339;fill:#8496a5;fill-opacity:1;stroke:#34434f;stroke-width:2.59502;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
            id="rect2"
-           width="33.388626"
+           width="32.118553"
            height="23.838768"
-           x="-45.388626"
+           x="-44.118553"
            y="20.080616"
            transform="scale(-1,1)" />
         <circle
-           style="fill:#e8f0f5;fill-opacity:1;stroke:#34434f;stroke-width:1.32292;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+           style="fill:#e8f0f5;fill-opacity:1;stroke:#34434f;stroke-width:2.64583;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
            id="path1"
            cx="44"
            cy="32"
