@@ -11,7 +11,7 @@ static_library("glad")
     ]
 }
 
-executable("inertia")
+executable("test")
 {
     sources =
     [
