@@ -1,7 +1,39 @@
-executable("test")
+static_library("glad")
+{
+    sources =
+    [
+        "external/src/glad.c"
+    ]
+
+    include_dirs = 
+    [
+        "external/include/"
+    ]
+}
+
+executable("inertia")
 {
     sources =
     [
         "src/main.cpp"
+    ]
+
+    include_dirs =
+    [
+        "include/",
+        "external/include/",
+
+        "/home/breadcat/Projects/Libraries/libbc/include/",
+        "/usr/include/"
+    ]
+
+    deps =
+    [
+        ":glad"
+    ]
+
+    libs =
+    [
+        "glfw"
     ]
 }

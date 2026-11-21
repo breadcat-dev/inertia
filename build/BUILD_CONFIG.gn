@@ -1,7 +1,5 @@
 set_default_toolchain("//build/toolchains:clang")
 
-include_dirs = ["include"]
-
 cflags_cc = 
 [
     "-Wall",
