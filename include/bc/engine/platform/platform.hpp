@@ -11,6 +11,7 @@
 #include "bc/core/casts.hpp"
 #include "bc/engine/platform/window.hpp"
 #include "bc/experimental/attributes.hpp"
+#include "bc/binary/flagwise.hpp"
 #include "bc/log/formatter.hpp"
 #include "bc/log/logger.hpp"
 #include "bc/log/sink.hpp"
@@ -53,18 +54,30 @@ namespace bc::engine::platform
             logger_.success("Shutdown platform.");
         }
 
-        window create_window(const window_create_info& info)
+        window create_window(const window::create_info& info)
         {
             logger_.info("Creating window..");
             logger_.indent();
+
+            // ---
 
             glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
             glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
             glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-            glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-            glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
-            // glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+            // ---
+
+            bool decorated{binary::test_flag(info.flags, window::flag::decorated)};
+            bool resizable{binary::test_flag(info.flags, window::flag::resizable)};
+
+            glfwWindowHint(GLFW_DECORATED, decorated ? GLFW_TRUE : GLFW_FALSE);
+            glfwWindowHint(GLFW_RESIZABLE, resizable ? GLFW_TRUE : GLFW_FALSE);
+            glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+
+            logger_.debug("Decorated: <{}>", decorated);
+            logger_.debug("Resizable: <{}>", resizable);
+
+            // ---
 
             int width = static_cast<int>(info.extent.width);
             int height = static_cast<int>(info.extent.height);
@@ -74,9 +87,13 @@ namespace bc::engine::platform
                 throw runtime_exception("Failed to create GLFW window.");
             logger_.debug("Created GLFW window ({}x{}): <{}>", width, height, void_cast(handle));
 
+            // ---
+
             void* last{glfwGetCurrentContext()};
             glfwMakeContextCurrent(handle);
             logger_.debug("Changed context from <{}> to <{}>.", last, void_cast(handle));
+
+            // ---
 
             handles_.push_back(handle);
             logger_.unindent();

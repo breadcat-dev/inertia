@@ -8,20 +8,31 @@
 #include "bc/experimental/attributes.hpp"
 #include "bc/experimental/geometry/extent.hpp"
 #include "bc/core/types.hpp"
+#include "bc/binary/bitwise.hpp"
 
 namespace bc::engine::platform
 {
-    struct window_create_info
-    {
-        std::string_view title;
-        experimental::geometry::extent2d extent;
-    };
-
-    // ---
-
     class window : public experimental::non_copyable
     {
     public:
+        friend class platform;
+
+        enum class flag : uint32
+        {
+            none = 0,
+            decorated = binary::bit_mask<uint32>(0),
+            resizable = binary::bit_mask<uint32>(1)
+        };
+
+        struct create_info
+        {
+            std::string_view title;
+            experimental::geometry::extent2d extent;
+            flag flags;
+        };
+
+        // ---
+
         void show() const noexcept
         {
             glfwShowWindow(handle_);
@@ -56,8 +67,6 @@ namespace bc::engine::platform
         {
             glfwSwapBuffers(handle_);
         }
-
-        friend class platform;
 
     private:
         constexpr explicit window(GLFWwindow* handle) :

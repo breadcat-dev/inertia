@@ -15,19 +15,19 @@ int main()
     logger.separator(log::level::debug, "Kitsu");
     logger.debug("Made by breadcat <3");
 
-    engine::platform::window_create_info window_info
+    engine::platform::window::create_info window_info
     {
         .title = "Kitsu",
-        .extent = {800, 600}
-        // make window hidden
+        .extent = {800, 600},
+        .flags = engine::platform::window::flag::none
     };
 
-    engine::graphics::renderer_create_info renderer_info
+    engine::graphics::renderer::create_info renderer_info
     {
-        
+        .flags = engine::graphics::renderer::flag::vsync
     };
 
-    engine::engine_create_info engine_info
+    engine::engine::create_info engine_info
     {
         .window_info = window_info,
         .renderer_info = renderer_info

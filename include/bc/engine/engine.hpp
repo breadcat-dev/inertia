@@ -11,18 +11,18 @@
 
 namespace bc::engine
 {
-    struct engine_create_info
-    {
-        platform::window_create_info& window_info;
-        graphics::renderer_create_info& renderer_info;
-    };
-
-    // ---
-
     class engine : public experimental::non_copyable, public experimental::non_movable
     {
     public:
-        explicit engine(const engine_create_info& info) :
+        struct create_info
+        {
+            platform::window::create_info& window_info;
+            graphics::renderer::create_info& renderer_info;
+        };
+
+        // ---
+
+        explicit engine(const create_info& info) :
             logger_{log::console_logger("Engine")},
             platform_{},
             window_{platform_.create_window(info.window_info)},
@@ -56,6 +56,8 @@ namespace bc::engine
             logger_.info("Initializing application..");
             application.initialize(context_);
             logger_.success("Initialized application.");
+
+            window_.show();
         }
 
         void update(application& application)
