@@ -10,7 +10,7 @@ namespace bc::engine
         virtual ~application() = default;
 
         virtual void initialize(const context& context) = 0;
-        virtual void update(const context& context) = 0;
+        virtual void update(const context& context, time::steady_duration delta_time) = 0;
         virtual void render(const context& context) = 0;
         virtual void shutdown(const context& context) = 0;
     };

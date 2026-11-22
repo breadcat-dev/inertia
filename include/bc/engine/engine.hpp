@@ -8,6 +8,10 @@
 #include "bc/log/formatter.hpp"
 #include "bc/log/logger.hpp"
 #include "bc/log/sink.hpp"
+#include "bc/time/timer.hpp"
+#include "bc/time/types.hpp"
+#include "bc/time/utility.hpp"
+#include <thread>
 
 namespace bc::engine
 {
@@ -18,11 +22,14 @@ namespace bc::engine
         {
             platform::window::create_info& window_info;
             graphics::renderer::create_info& renderer_info;
+
+            usize max_framerate;
         };
 
         // ---
 
         explicit engine(const create_info& info) :
+            target_frametime_{time::to_nanoseconds(time::seconds{1}) / info.max_framerate},
             logger_{log::console_logger("Engine")},
             platform_{},
             window_{platform_.create_window(info.window_info)},
@@ -43,8 +50,14 @@ namespace bc::engine
 
             while(!window_.should_close())
             {
-                update(application);
+                time::steady_duration delta_time{timer_.duration()};
+                timer_.reset();
+
+                update(application, delta_time);
                 render(application);
+
+                if(time::to_nanoseconds(delta_time) < target_frametime_)
+                    std::this_thread::sleep_for(target_frametime_ - delta_time);
             }
 
             shutdown(application);
@@ -60,11 +73,11 @@ namespace bc::engine
             window_.show();
         }
 
-        void update(application& application)
+        void update(application& application, time::steady_duration delta_time)
         {
             platform_.poll_events();
 
-            application.update(context_);
+            application.update(context_, delta_time);
         }
 
         void render(application& application)
@@ -83,8 +96,11 @@ namespace bc::engine
             logger_.success("Shutdown application.");
         }  
 
+        const time::nanoseconds target_frametime_;
+
         log::logger<log::console_sink<log::color_formatter>> logger_;
-        
+        time::timer timer_;
+
         platform::platform platform_;
         platform::window window_;
         graphics::renderer renderer_;
