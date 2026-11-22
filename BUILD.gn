@@ -1,16 +1,3 @@
-static_library("glad")
-{
-    sources =
-    [
-        "external/src/glad.c"
-    ]
-
-    include_dirs = 
-    [
-        "external/include/"
-    ]
-}
-
 executable("test")
 {
     sources =
@@ -18,22 +5,20 @@ executable("test")
         "src/main.cpp"
     ]
 
-    include_dirs =
+    cflags_cc +=
     [
-        "include/",
-        "external/include/",
-
-        "/home/breadcat/Projects/Libraries/libbc/include/",
-        "/usr/include/"
+        "-isystem",
+        rebase_path("external/include", root_build_dir)
     ]
-
-    deps =
+    
+    lib_dirs =
     [
-        ":glad"
+        "external/lib/"
     ]
 
     libs =
     [
-        "glfw"
+        "glfw",
+        "glad"
     ]
 }

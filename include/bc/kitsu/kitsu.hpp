@@ -12,31 +12,28 @@ namespace bc::kitsu
     public:
         void initialize() override
         {
-            /*glViewport(0, 0, width, height);
-            if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-            {
-                logger_.error("GLAD initialization failed.");
-                return;
-            }    */
+            logger_.indent();
+            logger_.debug("Initialized Kitsu.");
+            // show window
+            // glViewport(0, 0, width, height);
         }
 
         void update() override
         {
-            /*while(!glfwWindowShouldClose(window_))
-            {
-                glfwSwapBuffers(window_);
-                glfwPollEvents();    
-            }*/
+            logger_.debug("Updated Kitsu");
         }
 
         void render() override
         {
-
+            logger_.debug("Rendered Kitsu.");
         }
 
         void shutdown() override
         {
+            // hide window
 
+            logger_.debug("Shutdown Kitsu.");
+            logger_.unindent();
         }
 
     private:

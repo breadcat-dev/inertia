@@ -2,6 +2,7 @@
 #include <exception>
 
 #include "bc/engine/platform/window.hpp"
+#include "bc/engine/graphics/renderer.hpp"
 #include "bc/kitsu/kitsu.hpp"
 #include "bc/log/logger.hpp"
 #include "bc/engine/engine.hpp"
@@ -17,13 +18,19 @@ int main()
     engine::platform::window_create_info window_info
     {
         .title = "Kitsu",
-        .width = 800,
-        .height = 600
+        .extent = {800, 600}
+        // make window hidden
+    };
+
+    engine::graphics::renderer_create_info renderer_info
+    {
+        
     };
 
     engine::engine_create_info engine_info
     {
-        .window_info = window_info
+        .window_info = window_info,
+        .renderer_info = renderer_info
     };
 
     try
