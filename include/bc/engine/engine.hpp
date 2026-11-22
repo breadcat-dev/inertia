@@ -1,5 +1,7 @@
 #pragma once
 
+#include <thread>
+
 #include "bc/engine/application.hpp"
 #include "bc/engine/graphics/renderer.hpp"
 #include "bc/engine/platform/platform.hpp"
@@ -11,7 +13,6 @@
 #include "bc/time/timer.hpp"
 #include "bc/time/types.hpp"
 #include "bc/time/utility.hpp"
-#include <thread>
 
 namespace bc::engine
 {

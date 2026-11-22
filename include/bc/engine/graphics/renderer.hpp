@@ -60,13 +60,13 @@ namespace bc::engine::graphics
             glfwSwapInterval(vsync ? GLFW_TRUE : GLFW_FALSE);
             glPolygonMode(GL_FRONT_AND_BACK, wireframe ? GL_LINE : GL_FILL);
 
-            logger_.debug("Vsync: <{}>", vsync);
-            logger_.debug("Wireframe rendering: <{}>", wireframe);
+            logger_.debug("Vsync: <{}>.", vsync);
+            logger_.debug("Wireframe rendering: <{}>.", wireframe);
 
             // ---
 
             glViewport(0, 0, framebuffer_extent.width, framebuffer_extent.height);
-            logger_.debug("Set viewport size to <{}x{}>", framebuffer_extent.width, framebuffer_extent.height);
+            logger_.debug("Set viewport size to <{}x{}>.", framebuffer_extent.width, framebuffer_extent.height);
 
             // ---
 

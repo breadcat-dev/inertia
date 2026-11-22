@@ -6,7 +6,6 @@
 #include "bc/kitsu/kitsu.hpp"
 #include "bc/log/logger.hpp"
 #include "bc/engine/engine.hpp"
-#include "bc/time/types.hpp"
 
 using namespace bc;
 
@@ -34,7 +33,6 @@ int main()
         .renderer_info = renderer_info,
         .max_framerate = 144
     };
-
 
     try
     {

@@ -43,7 +43,7 @@ namespace bc::engine::platform
 
             for(GLFWwindow* handle : handles_)
             {
-                logger_.warning("Destroying GLFW window: <{}>", void_cast(handle));
+                logger_.warning("Destroying GLFW window: <{}>..", void_cast(handle));
                 glfwDestroyWindow(handle);
             }
 
@@ -74,8 +74,8 @@ namespace bc::engine::platform
             glfwWindowHint(GLFW_RESIZABLE, resizable ? GLFW_TRUE : GLFW_FALSE);
             glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 
-            logger_.debug("Decorated: <{}>", decorated);
-            logger_.debug("Resizable: <{}>", resizable);
+            logger_.debug("Decorated: <{}>.", decorated);
+            logger_.debug("Resizable: <{}>.", resizable);
 
             // ---
 
@@ -85,7 +85,7 @@ namespace bc::engine::platform
             GLFWwindow* handle = glfwCreateWindow(width, height, info.title.data(), nullptr, nullptr);
             if(!handle)
                 throw runtime_exception("Failed to create GLFW window.");
-            logger_.debug("Created GLFW window ({}x{}): <{}>", width, height, void_cast(handle));
+            logger_.debug("Created GLFW window ({}x{}): <{}>.", width, height, void_cast(handle));
 
             // ---
 
@@ -110,7 +110,7 @@ namespace bc::engine::platform
             verify(iterator != handles_.end(), "Failed to destroy: unknown window.");
 
             glfwDestroyWindow(*iterator);
-            logger_.debug("Destroyed GLFW window: <{}>", void_cast(*iterator));
+            logger_.debug("Destroyed GLFW window: <{}>.", void_cast(*iterator));
             handles_.erase(iterator);
             window.handle_ = nullptr;
 
