@@ -10,25 +10,26 @@ namespace bc::kitsu
     class kitsu : public engine::application
     {
     public:
-        void initialize() override
+        void initialize(const engine::context& context) override
         {
             logger_.indent();
             logger_.debug("Initialized Kitsu.");
+
+            context.renderer.clear_color({1.0f, 0.0f, 0.0f, 1.0f});
             // show window
-            // glViewport(0, 0, width, height);
         }
 
-        void update() override
+        void update(const engine::context& context) override
         {
             logger_.debug("Updated Kitsu");
         }
 
-        void render() override
+        void render(const engine::context& context) override
         {
             logger_.debug("Rendered Kitsu.");
         }
 
-        void shutdown() override
+        void shutdown(const engine::context& context) override
         {
             // hide window
 

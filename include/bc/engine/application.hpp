@@ -1,5 +1,7 @@
 #pragma once
 
+#include "bc/engine/context.hpp"
+
 namespace bc::engine
 {
     class application
@@ -7,9 +9,9 @@ namespace bc::engine
     public:
         virtual ~application() = default;
 
-        virtual void initialize() = 0;
-        virtual void update() = 0;
-        virtual void render() = 0;
-        virtual void shutdown() = 0;
+        virtual void initialize(const context& context) = 0;
+        virtual void update(const context& context) = 0;
+        virtual void render(const context& context) = 0;
+        virtual void shutdown(const context& context) = 0;
     };
 }

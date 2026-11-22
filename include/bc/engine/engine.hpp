@@ -6,7 +6,6 @@
 #include "bc/engine/platform/window.hpp"
 #include "bc/experimental/attributes.hpp"
 #include "bc/log/formatter.hpp"
-#include "bc/log/level.hpp"
 #include "bc/log/logger.hpp"
 #include "bc/log/sink.hpp"
 
@@ -27,10 +26,9 @@ namespace bc::engine
             logger_{log::console_logger("Engine")},
             platform_{},
             window_{platform_.create_window(info.window_info)},
-            renderer_{info.renderer_info, window_.framebuffer_extent()}
+            renderer_{info.renderer_info, window_.framebuffer_extent()},
+            context_{window_, renderer_}    
         {
-            // remove
-            renderer_.clear_color({1.0f, 0.0f, 0.0f, 1.0f});
         }
 
         ~engine()
@@ -56,7 +54,7 @@ namespace bc::engine
         void initialize(application& application)
         {
             logger_.info("Initializing application..");
-            application.initialize();
+            application.initialize(context_);
             logger_.success("Initialized application.");
         }
 
@@ -64,14 +62,14 @@ namespace bc::engine
         {
             platform_.poll_events();
 
-            application.update();
+            application.update(context_);
         }
 
         void render(application& application)
         {
             renderer_.clear();
 
-            application.render();
+            application.render(context_);
 
             window_.swap_buffers();
         }
@@ -79,7 +77,7 @@ namespace bc::engine
         void shutdown(application& application)
         {
             logger_.info("Shutting down application..");
-            application.shutdown();
+            application.shutdown(context_);
             logger_.success("Shutdown application.");
         }  
 
@@ -88,5 +86,7 @@ namespace bc::engine
         platform::platform platform_;
         platform::window window_;
         graphics::renderer renderer_;
+
+        context context_;
     };
 }
